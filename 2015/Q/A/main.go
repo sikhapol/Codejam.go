@@ -22,9 +22,10 @@ func solveProb(problem interface{}) string {
 	shynesses := strings.Split(string(problem.([]byte)), " ")[1]
 	var numRise, numInvite int
 	for i, c := range shynesses {
+		n := int(c - '0')
 		inv := int(math.Max(0, float64(i-numRise)))
 		numInvite += inv
-		numRise += inv + int(c-'0')
+		numRise += inv + n
 	}
 	return strconv.Itoa(numInvite)
 }
@@ -42,7 +43,7 @@ func main() {
 	for i = 1; scanner.Scan(); i++ {
 		probBytes := scanner.Bytes()
 		prob := mapProb(probBytes)
-		fmt.Println("Case #"+strconv.Itoa(i), solveProb(prob))
+		fmt.Println("Case #"+strconv.Itoa(i)+":", solveProb(prob))
 	}
 
 	if i-1 != numProbs {
